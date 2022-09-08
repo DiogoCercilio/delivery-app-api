@@ -1,0 +1,66 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Company {
+  id                Int               @id @default(autoincrement())
+  category          Category          @relation(fields: [category_id], references: [id])
+  category_id       Int
+  imgUrl            String
+  title             String
+  rating            String
+  genre             String
+  address           String
+  short_description String
+  long              String
+  lat               String
+  products          Company_Product[]
+
+  @@map("company")
+}
+
+model Company_Product {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String
+  price       String
+  image       String
+  Company     Company? @relation(fields: [company_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  company_id  Int
+
+  @@map("company_product")
+}
+
+model Category {
+  id      Int       @id @default(autoincrement())
+  image   String
+  title   String
+  Company Company[]
+
+  @@map("category")
+}
+
+model Featured {
+  id          Int    @id @default(autoincrement())
+  title       String
+  description String
+  category    String
+
+  @@map("featured")
+}
+
+model FeaturedXCompany {
+  id          Int @id @default(autoincrement())
+  featured_id Int
+  company_id  Int
+
+  @@map("featured_x_company")
+}

@@ -26,10 +26,23 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+
+
 ## Installation
+This project uses Prisma as its ORM. 
 
 ```bash
+# Get Postgres Running on Docker
+$ docker-compose up -d
+
+# Install the project dependencies
 $ npm install
+
+# Run the migrations
+$ npx prisma migrate dev
+
+# Run the Seed
+$ npx prisma db seed 
 ```
 
 ## Running the app
@@ -45,6 +58,9 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
+## About the Database (under construction)
+<img src="diagram.png"/>
+
 ## Test
 
 ```bash
@@ -57,16 +73,6 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
 
 ## License
 
